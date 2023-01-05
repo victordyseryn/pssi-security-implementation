@@ -3,4 +3,4 @@ clean:
 
 all: clean
 	mkdir build
-	gcc src/pssi-sample.c src/pssi-attack.c src/main.c -Iinclude -Llib -l:librbc.a -o build/main
+	gcc src/pssi-sample.c src/pssi-attack.c src/main.c -Iexternals/rbc-lib/bin/include -Lexternals/rbc-lib/bin -l:librbc.a -o build/main
