@@ -15,11 +15,8 @@ int build_spaces_and_intersect(const rbc_83_elt f[4], const rbc_83_elt f_prime[4
     rbc_83_vspace_init(&A2, Z_size);
     rbc_83_vspace_init(&B, 2*Z_size);
     rbc_83_vspace_init(&tmp_space, 2*Z_size);
-    //rbc_83_vspace_set_zero(B, 2*Z_size);
-    //rbc_83_vspace_set_zero(tmp_space, 2*Z_size);
 
     //printf("2*Z_size = %d", 2*Z_size);
-    //rbc_83_vspace_print(B, 2*Z_size);
 
     for(int i = 0 ; i < 3 ; i++) {
         for(int j = i+1 ; j < 4 ; j++) {
@@ -40,7 +37,7 @@ int build_spaces_and_intersect(const rbc_83_elt f[4], const rbc_83_elt f_prime[4
             if(i == 0 && j == 1) {
                 rbc_83_vspace_set(B, A, 2*Z_size);
             } else {
-                printf("%d\n", rbc_83_vspace_intersection(tmp_space, B, A, 2*Z_size ,2*Z_size));
+                rbc_83_vspace_intersection(tmp_space, B, A, 2*Z_size ,2*Z_size);
                 rbc_83_vspace_set(B, tmp_space, 2*Z_size);
             }
 
