@@ -6,7 +6,7 @@ void sampleU(random_source *rand_ctx, rbc_83_vspace U, rbc_83_vspace EF, rbc_83_
   int filtering;
   rbc_83_vspace eiF, inter;
   rbc_83_vspace_init(&eiF, d);
-  rbc_83_vspace_init(&inter, r*d-lambda);
+  rbc_83_vspace_init(&inter, r*d);
 
   do {
     do {
