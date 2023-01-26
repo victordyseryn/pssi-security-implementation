@@ -5,12 +5,13 @@
 #include "pssi-attack.h"
 #include "pssi-sample.h"
 #include "pssi-debug.h"
+#include "pssi-lemma.h"
 
 #define M 83
 #define R 3
 #define D 3
 #define LAMBDA 6
-#define W 24
+#define W 10
 
 int main(int argc, char const *argv[])
 {
@@ -50,6 +51,23 @@ int main(int argc, char const *argv[])
 
     //sample_full_rank_pair_from_support(&rand_ctx, e, e_prime, E, R);
 
+    /******************************************************/
+
+    for(int n = 0 ; n < 5000 ; n++) {
+        for(int i = 0 ; i < 4 ; i++) {
+            generate_pssi_sample(&rand_ctx, F[i], Z[i], E, W, R, D, LAMBDA);
+            sample_full_rank_pair_from_support(&rand_ctx, f[i], f_prime[i], F[i], D);
+        }
+
+        check_lemma_5(f, f_prime, E, R, Z, W+R*D-LAMBDA);
+    }
+    
+    // printf("%d\n", check_lemma_5(f, f_prime, E, R, Z, W+R*D-LAMBDA));
+
+    goto cleanup;
+
+    /*****************************************************/
+
     while(rank_E_guess < R && index_E_guess < 2*R) {
 
         printf("Generating new PSSI samples...\n");
@@ -83,15 +101,6 @@ int main(int argc, char const *argv[])
         }
     }
 
-    for(int i = 0 ; i < 4 ; i++) {
-        rbc_83_vspace_clear(F[i]);
-        rbc_83_vspace_clear(Z[i]);
-    }
-
-    rbc_83_vspace_clear(E);
-    rbc_83_vspace_clear(E_guess);
-    rbc_83_vspace_clear(inter);
-
     end = clock();
     cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
 
@@ -105,6 +114,17 @@ int main(int argc, char const *argv[])
     } else {
         printf("The attack is a FAILURE\n");
     }
+
+cleanup:
+
+    for(int i = 0 ; i < 4 ; i++) {
+        rbc_83_vspace_clear(F[i]);
+        rbc_83_vspace_clear(Z[i]);
+    }
+
+    rbc_83_vspace_clear(E);
+    rbc_83_vspace_clear(E_guess);
+    rbc_83_vspace_clear(inter);
 
     random_clear(&rand_ctx);
 
