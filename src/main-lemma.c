@@ -12,7 +12,7 @@
 #define R 3
 #define D 3
 #define LAMBDA 6
-#define W 27
+#define W 10
 
 int main(int argc, char const *argv[])
 {
@@ -94,7 +94,7 @@ int main(int argc, char const *argv[])
             if(dim > 0) {
                 index_E_guess++;
                 rank_E_guess = rbc_vec_get_rank_vartime(E_guess, 2*R);
-                rbc_vspace_intersection(inter, E, E_guess, R, 2*R);
+                rbc_vspace_intersection_vartime(inter, E, E_guess, R, 2*R);
                 dim_inter_E_and_E_guess = rbc_vec_get_rank_vartime(inter, 2*R);
                 printf("dim(E_guess) is now %d ; dim(E inter E_guess) is now %d\n", rank_E_guess, dim_inter_E_and_E_guess);
                 j = (1 << (6*D-3));
