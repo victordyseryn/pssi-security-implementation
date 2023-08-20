@@ -2,6 +2,12 @@
 
 This repository is an implementation of the attack presented in [[1]](https://eprint.iacr.org/2023/926) against the post-quantum signature scheme Durandal [[2]](https://eprint.iacr.org/2018/1192).
 
+This attack target the PSSI problem on which the security of Durandal relies.
+
+# Prerequisite
+
+This project uses the Rank Metric Cryptography Library [rbc-lib](https://www.rbc-lib.org/) as a submodule.
+
 # Build
 
 For building the attack, run one out of the three
@@ -22,4 +28,6 @@ For building the Lemma 5 checking, run one out of the two
     ./build/main
 
 
+# Contact
 
+Please contact one of the authors of [[1]](https://eprint.iacr.org/2023/926) regarding any question about this implementation
